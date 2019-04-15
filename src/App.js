@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function Square(props) {
@@ -11,70 +10,29 @@ function Square(props) {
 }
 
 class Board extends Component {
+  renderSquares(i) {
+    return(
+      <Square value={i} />
+    );
+  }
+
   render() {
-    return (
+    const NUM_ROWS = 6; //Lift state up later by changing these to inherit from props
+    const ROW_LENGTH = 8;
+    
+    const row = new Array(ROW_LENGTH).fill(null);
+    
+    const render = [];
+    for (let i = 0; i < NUM_ROWS; i++) {
+        render.push(<div className="board-row">{row.map((square,index) => (
+          square = this.renderSquares((index + (row.length * i)))
+        ))}</div>);
+    }
+  
+    return (   
       <div className="game">
-        <div className="status">Next Player: Black</div> 
-        <div className="board-row">
-            <Square value="R"/>
-            <Square />
-            <Square />
-            <Square />
-            <Square value="B"/>
-            <Square />
-            <Square />
-            <Square />
-          </div>
-          <div className="board-row">
-            <Square />
-            <Square />
-            <Square />
-            <Square />
-            <Square />
-            <Square />
-            <Square value="R"/>
-            <Square />
-          </div>
-          <div className="board-row">
-            <Square />
-            <Square />
-            <Square value="R"/>
-            <Square value="R"/>
-            <Square />
-            <Square />
-            <Square />
-            <Square />
-          </div>
-          <div className="board-row">
-            <Square />
-            <Square value="B"/>
-            <Square />
-            <Square />
-            <Square />
-            <Square />
-            <Square value="B"/>
-            <Square />
-          </div>
-          <div className="board-row">
-          <Square value="B"/>
-            <Square />
-            <Square />
-            <Square />
-            <Square />
-            <Square />
-            <Square />
-            <Square />
-          </div>
-          <div className="board-row">
-            <Square />
-            <Square />
-            <Square />
-            <Square />
-            <Square />
-            <Square />
-            <Square />
-            <Square />
-          </div>
+        <div className="status">Next Player: Black</div>
+        {render}
       </div>
     );
   }
@@ -86,19 +44,6 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1>React Four</h1>
-          
-          {/*<img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload. Here is a test
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-    </a> */}
         </header>
         <main className="main-bg">
             <Board />
