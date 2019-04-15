@@ -60,14 +60,56 @@ class Game extends Component {
     });
   }
 
+  /* iterate over the board squares from the top left to the bottom right
+     The constants represent the difference in array index for squares
+     that are visually adjacent vertically, horizontally, forwards diagonally, or backwards diagonally
+     which is all the ways to get four in a row. For each square,
+     check if the next adjacent 3 in every possible direction are the same to determine the winner
+  */
+  determineWinner(squares) {
+    const len = this.state.cols;
+    const diagFwd = this.state.cols + 1;
+    const diagBkwd = this.state.cols - 1;
+
+    for (let i = 0; i < squares.length; i++) {
+      if (squares[i] && squares[i] === squares[i+1]
+          && squares[i] === squares[i+2]
+          && squares[i] === squares[i+3])
+          {
+            return squares[i];
+          }
+      else if (squares[i] && squares[i] === squares[i + len]
+                && squares[i] === squares[i + (len * 2)]
+                && squares[i] === squares[i + (len * 3)])
+                {
+                  return squares[i];
+                }
+      else if (squares[i] && squares[i] === squares[i + diagFwd]
+                && squares[i] === squares[i + (diagFwd * 2)]
+                && squares[i] === squares[i + (diagFwd * 3)])
+                {
+                  return squares[i];
+                }
+       else if (squares[i] && squares[i] === squares[i + diagBkwd]
+                && squares[i] === squares[i + (diagBkwd * 2)]
+                && squares[i] === squares[i + (diagBkwd * 3)])
+                {
+                  return squares[i];
+                }
+      else { }           
+    }
+    return null;
+  }
+
   handleClick(i) {
+    //TODO: bugs with trying to color the output here, try coloring it with CSS selector
     const red = <span className="red">R</span>
     const blue = <span className="blue">B</span>
     const squares = this.state.squares.slice();
 
-    if (squares[i]) return;
+    if (this.determineWinner(squares) || squares[i]) return;
 
-    squares[i] = this.state.redToMove ? red : blue ;
+    squares[i] = this.state.redToMove ? 'R' : 'B' ;
     this.setState({
       squares: squares,
       redToMove: !this.state.redToMove
@@ -75,10 +117,15 @@ class Game extends Component {
   }
 
   render() {
-    let status = this.state.redToMove ? 'Red' : 'Blue';
+    let status;  
+    if (this.determineWinner(this.state.squares)) {
+      status = "Winner: "+ (this.determineWinner(this.state.squares) === 'R' ? 'Red' : 'Blue');
+    } else {
+      status = "Next Player: " + (this.state.redToMove ? 'Red' : 'Blue');
+    }
     return (
       <div className="game">
-        <div className="status">Next Player: {status}</div>
+        <div className="status">{status}</div>
            <Board onClick={i => this.handleClick(i)}
               rows={this.state.rows} 
               cols={this.state.cols} 
