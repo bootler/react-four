@@ -105,7 +105,6 @@ class Game extends Component {
   }
 
   handleClick(i) {
-    //TODO: bugs with trying to color the output here, try coloring it with CSS selector
     const red = <span className="red">R</span>
     const blue = <span className="blue">B</span>
     const squares = this.state.squares.slice();
