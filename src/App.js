@@ -72,31 +72,34 @@ class Game extends Component {
     const diagBkwd = this.state.cols - 1;
 
     for (let i = 0; i < squares.length; i++) {
-      if (squares[i] && squares[i] === squares[i+1]
-          && squares[i] === squares[i+2]
-          && squares[i] === squares[i+3])
+      if (squares[i]) {
+        const attr = (i) => (squares[i] ? squares[i].props.className : null)
+        if (attr(i) === attr(i + 1)
+          && attr(i) === attr(i + 2)
+          && attr(i) === attr(i + 3))
           {
-            return squares[i];
+            return attr(i)
           }
-      else if (squares[i] && squares[i] === squares[i + len]
-                && squares[i] === squares[i + (len * 2)]
-                && squares[i] === squares[i + (len * 3)])
-                {
-                  return squares[i];
-                }
-      else if (squares[i] && squares[i] === squares[i + diagFwd]
-                && squares[i] === squares[i + (diagFwd * 2)]
-                && squares[i] === squares[i + (diagFwd * 3)])
-                {
-                  return squares[i];
-                }
-       else if (squares[i] && squares[i] === squares[i + diagBkwd]
-                && squares[i] === squares[i + (diagBkwd * 2)]
-                && squares[i] === squares[i + (diagBkwd * 3)])
-                {
-                  return squares[i];
-                }
-      else { }           
+        else if (attr(i) === attr(i + len)
+                  && attr(i) === attr(i + (len * 2))
+                  && attr(i) === attr(i + (len * 3)))
+                  {
+                    return attr(i);
+                  }
+        else if (attr(i) === attr(i + diagFwd)
+                  && attr(i) === attr(i + (diagFwd * 2))
+                  && attr(i) === attr(i + (diagFwd * 3)))
+                  {
+                    return attr(i);
+                  }
+        else if (attr(i) === attr(i + diagBkwd)
+                  && attr(i) === attr(i + (diagBkwd * 2))
+                  && attr(i) === attr(i + (diagBkwd * 3)))
+                  {
+                    return attr(i);
+                  }
+        else { }           
+      }     
     }
     return null;
   }
@@ -109,7 +112,7 @@ class Game extends Component {
 
     if (this.determineWinner(squares) || squares[i]) return;
 
-    squares[i] = this.state.redToMove ? 'R' : 'B' ;
+    squares[i] = this.state.redToMove ? red : blue;
     this.setState({
       squares: squares,
       redToMove: !this.state.redToMove
@@ -119,7 +122,7 @@ class Game extends Component {
   render() {
     let status;  
     if (this.determineWinner(this.state.squares)) {
-      status = "Winner: "+ (this.determineWinner(this.state.squares) === 'R' ? 'Red' : 'Blue');
+      status = "Winner: "+ (this.determineWinner(this.state.squares) === 'red' ? 'Red' : 'Blue');
     } else {
       status = "Next Player: " + (this.state.redToMove ? 'Red' : 'Blue');
     }
@@ -131,6 +134,10 @@ class Game extends Component {
               cols={this.state.cols} 
               squares={this.state.squares}
               />
+              <section>
+                <button>Save Game</button>
+                <button>Load Game</button>
+            </section>
         </div>
     );
   }
@@ -145,10 +152,6 @@ class App extends Component {
         </header>
         <main className="main-bg">
             <Game />
-            <section>
-              <button>Save Game</button>
-              <button>Load Game</button>
-            </section>
         </main>        
       </div>
     );
