@@ -46,6 +46,7 @@ class Game extends Component {
         rows: 7,
         cols: 8,
         squares: [],
+        saves: [],
         redToMove: true,
       }
   }
@@ -149,12 +150,31 @@ class Game extends Component {
     });
   }
 
+  load(i) {   
+    const squares = this.state.saves[i].squares.slice()
+    this.setState({
+      squares: squares
+    })
+  }
+
   reset() {
     const squares = this.state.squares.slice();
     this.setState({
       squares: squares.map((s) => s = null),
       redToMove: true
     });
+  }
+
+  save() {
+      const squares = this.state.squares.slice();
+      const saves = this.state.saves.slice();
+      this.setState({
+        saves: saves.concat([
+          {
+            squares: squares
+          }
+        ])
+      })
   }
 
   render() {
@@ -165,23 +185,36 @@ class Game extends Component {
       status = "Next Player: " + (this.state.redToMove ? 'Red' : 'Blue');
     }
     return (
-      <div className="game">
-        <div className="status">{status}</div>
-           <Board onClick={i => this.handleClick(i)}
-              rows={this.state.rows} 
-              cols={this.state.cols} 
-              squares={this.state.squares}
-              />
-              <section>
-                <button className="game-button">Save Game</button>
-                <button className="game-button" onClick={() => this.reset()}>Reset</button>
-            </section>
+      <div className="container">
+        <div className="savedGames"><h3>Saved Games</h3>
+          {this.state.saves.map((save,index) => {
+            return(
+                <span>
+                  <p>Saved Game#: {index}</p>
+                  <button onClick={() => this.load(index)}>load</button>
+                </span>
+              )
+             })
+           }
+        </div>
+        <div className="game">
+          <div className="status">{status}</div>
+            <Board onClick={i => this.handleClick(i)}
+                rows={this.state.rows} 
+                cols={this.state.cols} 
+                squares={this.state.squares}
+                />
+                <section className="buttons">
+                  <button className="game-button" onClick={() => this.save()}>Save Game</button>
+                  <button className="game-button" onClick={() => this.reset()}>Reset</button>
+                </section>
+          </div>
         </div>
     );
   }
 }
 
-class App extends Component {
+class App extends Component {  
   render() {
     return (
       <div className="App">

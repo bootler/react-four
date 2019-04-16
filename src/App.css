@@ -13,8 +13,13 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.blue {
+  color: blue;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
 }
 
 /* Borrowed CSS from React Tutorial for placeholder purpose only 
@@ -81,13 +86,37 @@
 }
 
 .main-bg {
- align-items: center;
+  align-items: flex-start;
   background-color: #CCCCBB;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
   color: black;
   min-height: 90vh;
+}
+
+.red {
+  color: red;
+}
+
+
+.savedGames {
+  align-self: flex-start;
+  background-color: #EEEEDD;
+  display: flex;
+  flex-direction: column;
+  min-width: 20vw;
+  min-height: 55vh;
+  margin-top: 5vh;
+  margin-right: 10vw;
+  margin-left: 4vw;
+  border: 1px solid;
+}
+
+section {
+  display:flex;
+  flex-direction: row;
+  margin-top: 20px;
 }
 
 .status {
@@ -96,16 +125,4 @@
   margin-bottom: 10px;
 }
 
-.red {
-  color: red;
-}
 
-.blue {
-  color: blue;
-}
-
-section {
-  display:flex;
-  flex-direction: row;
-  margin-top: 20px;
-}
