@@ -149,6 +149,14 @@ class Game extends Component {
     });
   }
 
+  reset() {
+    const squares = this.state.squares.slice();
+    this.setState({
+      squares: squares.map((s) => s = null),
+      redToMove: true
+    });
+  }
+
   render() {
     let status;  
     if (this.determineWinner(this.state.squares)) {
@@ -165,8 +173,8 @@ class Game extends Component {
               squares={this.state.squares}
               />
               <section>
-                <button>Save Game</button>
-                <button>Load Game</button>
+                <button className="game-button">Save Game</button>
+                <button className="game-button" onClick={() => this.reset()}>Reset</button>
             </section>
         </div>
     );
