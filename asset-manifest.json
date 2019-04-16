@@ -1,13 +1,13 @@
 {
-  "main.css": "/reac-four/static/css/main.95891e86.chunk.css",
-  "main.js": "/reac-four/static/js/main.81438980.chunk.js",
-  "main.js.map": "/reac-four/static/js/main.81438980.chunk.js.map",
-  "runtime~main.js": "/reac-four/static/js/runtime~main.c673f750.js",
-  "runtime~main.js.map": "/reac-four/static/js/runtime~main.c673f750.js.map",
-  "static/js/2.d6a534e5.chunk.js": "/reac-four/static/js/2.d6a534e5.chunk.js",
-  "static/js/2.d6a534e5.chunk.js.map": "/reac-four/static/js/2.d6a534e5.chunk.js.map",
-  "index.html": "/reac-four/index.html",
-  "precache-manifest.eb972ddcdde4c2e3ab1e8069be0dc79a.js": "/reac-four/precache-manifest.eb972ddcdde4c2e3ab1e8069be0dc79a.js",
-  "service-worker.js": "/reac-four/service-worker.js",
-  "static/css/main.95891e86.chunk.css.map": "/reac-four/static/css/main.95891e86.chunk.css.map"
+  "main.css": "/react-four/static/css/main.95891e86.chunk.css",
+  "main.js": "/react-four/static/js/main.e94b8152.chunk.js",
+  "main.js.map": "/react-four/static/js/main.e94b8152.chunk.js.map",
+  "runtime~main.js": "/react-four/static/js/runtime~main.8196d6e3.js",
+  "runtime~main.js.map": "/react-four/static/js/runtime~main.8196d6e3.js.map",
+  "static/js/2.d6a534e5.chunk.js": "/react-four/static/js/2.d6a534e5.chunk.js",
+  "static/js/2.d6a534e5.chunk.js.map": "/react-four/static/js/2.d6a534e5.chunk.js.map",
+  "index.html": "/react-four/index.html",
+  "precache-manifest.abede536baf9aa88df031e4d8d19bd3f.js": "/react-four/precache-manifest.abede536baf9aa88df031e4d8d19bd3f.js",
+  "service-worker.js": "/react-four/service-worker.js",
+  "static/css/main.95891e86.chunk.css.map": "/react-four/static/css/main.95891e86.chunk.css.map"
 }
