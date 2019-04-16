@@ -13,7 +13,7 @@ function Square(props) {
 class Board extends Component {
   renderSquares(i) {
     return(
-      <Square value={this.props.squares[i]} 
+      <Square value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}/>
     );
   }
@@ -104,14 +104,45 @@ class Game extends Component {
     return null;
   }
 
+  //given the square that was clicked, returns the index of the lowest square in the same column,
+  //since pieces should always stack up from the bottom
+  //This is accomplished by recursively checking the column for the lowest empty square
+  getLowestFreeSlot(index,btm)
+  {     
+      let bottom = btm;
+      if (btm === undefined) // !btm doesn't work because 0 is falsy but is a valid value for this method
+      {
+        bottom = this.state.rows -1;
+      }
+
+      const squares = this.state.squares.slice();
+      const len = this.state.cols;
+      //represents the square in the same column and lowest row as the square that was clicked
+      const lowest = index + (bottom * len);
+     
+      if (lowest < squares.length && !squares[lowest]) { 
+        return lowest
+      }
+      else {
+        bottom -= 1;
+        if (bottom < 0) {
+          return null;
+        }
+        return this.getLowestFreeSlot(index,bottom);      
+      }
+  }
+
   handleClick(i) {
     const red = <span className="red">R</span>
     const blue = <span className="blue">B</span>
     const squares = this.state.squares.slice();
 
-    if (this.determineWinner(squares) || squares[i]) return;
+    const lowestFreeSlot = this.getLowestFreeSlot(i);
 
-    squares[i] = this.state.redToMove ? red : blue;
+    if (this.determineWinner(squares) || lowestFreeSlot === null) 
+        return;
+
+    squares[lowestFreeSlot] = this.state.redToMove ? red : blue;
     this.setState({
       squares: squares,
       redToMove: !this.state.redToMove
