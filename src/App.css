@@ -86,11 +86,10 @@
 }
 
 .main-bg {
-  align-items: flex-start;
   background-color: #CCCCBB;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   color: black;
   min-height: 90vh;
 }
@@ -107,9 +106,9 @@
   flex-direction: column;
   min-width: 20vw;
   min-height: 55vh;
-  margin-top: 5vh;
-  margin-right: 10vw;
-  margin-left: 4vw;
+  margin-top: 5%;
+  margin-right: 5%;
+  margin-left: -20%;
   border: 1px solid;
 }
 
