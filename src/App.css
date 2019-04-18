@@ -104,11 +104,11 @@
   background-color: #EEEEDD;
   display: flex;
   flex-direction: column;
-  min-width: 20vw;
+  min-width: 35%;
   min-height: 55vh;
   margin-top: 5%;
   margin-right: 5%;
-  margin-left: -20%;
+  margin-left: -30%;
   border: 1px solid;
 }
 
