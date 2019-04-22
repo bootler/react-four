@@ -1,5 +1,6 @@
 .blue {
-    color: blue;
+    height: 55px;
+    width: 55px;
   }
   
   .container {
@@ -44,7 +45,8 @@
   }
   
   .red {
-    color: red;
+    height: 55px;
+    width: 55px;
   }
   
   

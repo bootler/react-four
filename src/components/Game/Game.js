@@ -97,8 +97,8 @@ class Game extends Component {
     }
   
     handleClick(i) {
-      const red = <span className="red">R</span>
-      const blue = <span className="blue">B</span>
+      const red = <img alt="R" className="red" src='/static/red_button.png'></img>
+      const blue = <img alt="B" className="blue" src='/static/blue_button.png'></img>
       const squares = this.state.squares.slice();
   
       const lowestFreeSlot = this.getLowestFreeSlot(i);

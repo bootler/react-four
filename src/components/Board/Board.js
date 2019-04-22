@@ -16,16 +16,16 @@ class Board extends Component {
       
       const row = new Array(ROW_LENGTH).fill(null);
       
-      const render = [];
+      const renderOutput = [];
       for (let i = 0; i < NUM_ROWS; i++) {
-          render.push(<div className="board-row">{row.map((square,index) => (
+          renderOutput.push(<div className="board-row">{row.map((square,index) => (
             square = this.renderSquares((index + (row.length * i)))
           ))}</div>);
       }
     
       return (  
         <span> 
-          {render}
+          {renderOutput}
         </span>
       );
     }
