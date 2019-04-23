@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Board from '../Board/Board';
 import './Game.css';
+import redBtn from './static/red_button.png';
+import blueBtn from './static/blue_button.png';
 
 class Game extends Component {
     constructor(props) {
@@ -97,8 +99,8 @@ class Game extends Component {
     }
   
     handleClick(i) {
-      const red = <img alt="R" className="red" src='/static/red_button.png'></img>
-      const blue = <img alt="B" className="blue" src='/static/blue_button.png'></img>
+      const red = <img alt="R" className="red" src={redBtn}></img>
+      const blue = <img alt="B" className="blue" src={blueBtn}></img>
       const squares = this.state.squares.slice();
   
       const lowestFreeSlot = this.getLowestFreeSlot(i);
