@@ -73,14 +73,10 @@ class Game extends Component {
     //given the square that was clicked, returns the index of the lowest square in the same column,
     //since pieces should always stack up from the bottom
     //This is accomplished by recursively checking the column for the lowest empty square
-    getLowestFreeSlot(index,btm)
+    getLowestFreeSlot(index,btm = this.state.rows -1)
     {     
         let bottom = btm;
-        if (btm === undefined) // !btm doesn't work because 0 is falsy but is a valid value for this method
-        {
-          bottom = this.state.rows -1;
-        }
-  
+          
         const squares = this.state.squares.slice();
         const len = this.state.cols;
         //represents the square in the same column and lowest row as the square that was clicked
