@@ -113,8 +113,10 @@ class Game extends Component {
   
     load(i) {   
       const squares = this.state.saves[i].squares.slice()
+      const redToMove = this.state.saves[i].redToMove
       this.setState({
-        squares: squares
+        squares: squares,
+        redToMove: redToMove
       })
     }
   
@@ -129,10 +131,12 @@ class Game extends Component {
     save() {
         const squares = this.state.squares.slice();
         const saves = this.state.saves.slice();
+        const redToMove = this.state.redToMove;
         this.setState({
           saves: saves.concat([
             {
-              squares: squares
+              squares: squares,
+              redToMove: redToMove
             }
           ])
         })
